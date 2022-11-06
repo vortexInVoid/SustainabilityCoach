@@ -1,0 +1,30 @@
+
+GROUP ACTIVITY LOG FILE
+-------------------------
+
+18-9-2022 : Initial Group Meeting for the CS 102 Project and Design Decisions (Group)
+18-9-2022 : Sustainability Tasks Added as examples (Group)
+19-9-2022 : Idea Sheet on Google Docs established (Group)
+20-9-2022 : Hangman Group HW repo initialized (Group)
+22-9-2022 : Group Meeting planned to take place but CANCELLED (Group)
+28-9-2022 : Group worked as a team and finished the HangMan Mock Up Homework
+29-9-2022 : CS102 Project Selection Topic Assigned
+4-10-2022 : Sinan Sonlu assigned as the Group Head Magnificent TA
+5-10-2022 : Possible UML Generators opened to discussion (Murat Ertan)
+8-10-2022 : GUI drafted (Batuhan Balaban)
+13-10-2022 : Forum example posted to WhatsApp Group and been proposed Java Server Socket (Batuhan Balaban)
+15-10-2022 : Group Meeting takes place while Özgür travels to Constantinople (Selman-Özgür-Murat)
+15-10-2022 : Project Repository opened as PRIVATE (Group)
+15-10-2022 : Project Spesification presentation tasks distributed (Group)
+17-10-2022 : Google Slides Document initialized (Özgür Görker)
+17-10-2022 : Persona discussion (Batuhan-Murat) [Fun]
+18-10-2022 : Requirments Report established (Batuhan Balaban)
+18-10-2022 : Requirments Stage Slides finished as Özgür conquers ENG102 Essay
+18-10-2022 : Batuhan's marvelous research paper discussed (Group)
+19-10-2022 : Presentation Delivered (Group)
+19-10-2022 : Group Face-to-face meeting in Cafe in and discussed the feedback from the presentation,Sinan Sonlu and class members (Group)
+21-10-2022 : G1D Requirments Report Finalised and submitted to Moodle (Group)
+23-10-2022 : GUI draft shared to WhatsApp (Selman Eldeniz)
+2-11-2022 : GUI slide and meeting scheduled to take place on 7-11-2022 after class hours (Group)
+7-11-2022 : 
+
