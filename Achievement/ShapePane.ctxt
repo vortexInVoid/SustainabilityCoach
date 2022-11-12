@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=ShapePane
+comment1.params=
+comment1.target=ShapePane()
+comment2.params=circle\ message\ isMain
+comment2.target=void\ addCircle(java.awt.geom.Ellipse2D.Double,\ java.lang.String,\ boolean)
+comment3.params=line
+comment3.target=void\ addLine(java.awt.geom.Line2D.Double)
+comment4.params=g
+comment4.target=void\ paintComponent(java.awt.Graphics)
+numComments=5
