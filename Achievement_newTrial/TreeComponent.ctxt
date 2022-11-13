@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=TreeComponent
+comment1.params=
+comment1.target=TreeComponent()
+comment2.params=newCircle
+comment2.target=void\ addCircle(Circle)
+comment3.params=newLine
+comment3.target=void\ addLine(java.awt.geom.Line2D.Double)
+comment4.params=g
+comment4.target=void\ paintComponent(java.awt.Graphics)
+comment5.params=level\ sublevel\ status
+comment5.target=void\ changeProgressChart(int,\ int,\ char)
+numComments=6
