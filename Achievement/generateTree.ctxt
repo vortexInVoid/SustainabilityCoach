@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=generateTree
-comment1.params=newShapePane
-comment1.target=generateTree(ShapePane)
-comment2.params=numOfDisplayedLeaves\ statingLevel\ messages
-comment2.target=void\ generateMainBranch(int,\ int,\ java.util.ArrayList)
-comment3.params=level\ numOfDisplayedLeaves
-comment3.target=void\ generateSubBranch(int,\ int)
-numComments=4
