@@ -39,11 +39,9 @@ public class TreePanel extends JPanel
                 count++;
             else
                 count = 0;
-        JFrame pupUp = new JFrame ("Layout Manager Demo");   
-        pupUp.setVisible(true);
-        pupUp.setPreferredSize(new Dimension(400, 300));
-        
-        
+            JFrame pupUp = new JFrame ("Layout Manager Demo");   
+            pupUp.setVisible(true);
+            pupUp.setPreferredSize(new Dimension(400, 300));
         }
         
     }
