@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Player
@@ -14,6 +15,7 @@ public class Player {
     private String status; // May make as an object
 
     private String password;
+    private ArrayList<Achievement> allAchieved;
 
     private playerNumericStats numericStats;
 
@@ -22,6 +24,7 @@ public class Player {
         setPlayerName(nameSurname.substring(0,nameSurname.indexOf(" ")));
         setPlayerSurname(nameSurname.substring(nameSurname.indexOf(" ")+1, nameSurname.length()));
         this.numericStats = new playerNumericStats(id);
+        this.allAchieved = new ArrayList<Achievement>();
     }
 
     public void setPlayerName(String name)
@@ -94,6 +97,11 @@ public class Player {
         return this.password;
     }
 
+    protected ArrayList<Achievement> getAllAchievements()
+    {
+        return this.allAchieved;
+    }
+
     protected void setID()
     {
 
@@ -102,6 +110,28 @@ public class Player {
     protected String getID()
     {
         return this.id;
+    }
+
+    protected void deleteAchievement(String name)
+    {
+        for(Achievement elem : this.allAchieved)
+        {
+            if(elem.getName.equals(name))
+            {
+                this.allAchieved.remove(elem);
+            }
+        }
+    }
+
+    protected Achievement getAchievement(String name)
+    {
+        for(Achievement elem : this.allAchieved)
+        {
+            if(elem.getName().equals(name))
+            {
+                return elem;
+            }
+        }
     }
 
 
