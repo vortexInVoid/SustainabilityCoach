@@ -5,51 +5,56 @@ import java.util.ArrayList;
  */
 public class Player {
 
-    private String id;
-    private String name;
-    private String surname;
-    private String nickyName;
-
-    private String leaguePlayer; // May make as an object
-    private String location; // May make as an object
-    private String status; // May make as an object
-
+    private String name_surname;
+    private String userName;
     private String password;
+
+    // 0-man 1-female 2-other
+    private int gender;
+
+    // Bilkent unsatisfactory-satis-honour-highhonour
+    private String status;
+
     private ArrayList<Achievement> allAchieved;
 
-    private playerNumericStats numericStats;
+    private double stringScore;
+    private double numericScore;
+    private double consistencyScore;
+
+    private double TotalScore;
+
 
     public Player(String nameSurname)
     {
+        //Name-Surname
         setPlayerName(nameSurname.substring(0,nameSurname.indexOf(" ")));
         setPlayerSurname(nameSurname.substring(nameSurname.indexOf(" ")+1, nameSurname.length()));
-        this.numericStats = new playerNumericStats(id);
-        this.allAchieved = new ArrayList<Achievement>();
+
+        this.stringScore = 0;
+        this.consistencyScore = 0;
+        this.numericScore = 0;
+        computeTotalScore();
     }
 
-    public void setPlayerName(String name)
+    //Controller
+    public void setName_Surname(String nameSurname)
     {
-        this.name = name;
+        this.name_surname = nameSurname;
     }
 
-    public void setPlayerSurname(String surname)
+    public String getName_Surname()
     {
-        this.surname = surname;
+        return this.name_surname;
     }
 
-    public void setPlayerNickyName(String nickname)
+    public void setUsername(String user)
     {
-        this.nickyName = nickname;
+        this.userName = user;
     }
 
-    public void setPlayerLeague(String league)
+    public String getUsername()
     {
-        this.leaguePlayer = league;
-    }
-
-    public void setPlayerLocation(String geo)
-    {
-        this.location = geo;
+        return this.userName;
     }
 
     public void setPlayerStatus(String status)
@@ -60,31 +65,6 @@ public class Player {
     public void setPassword(String password)
     {
         this.password = password;
-    }
-
-    public String getName()
-    {
-        return this.name;
-    }
-
-    public String getSurname()
-    {
-        return this.surname;
-    }
-
-    public String getNickName()
-    {
-        return this.nickyName;
-    }
-
-    public String getLeaguePlayer()
-    {
-        return this.leaguePlayer;
-    }
-
-    public String getLocation()
-    {
-        return this.location;
     }
 
     public String getStatus()
@@ -116,7 +96,7 @@ public class Player {
     {
         for(Achievement elem : this.allAchieved)
         {
-            if(elem.getName.equals(name))
+            if(elem.getName().equals(name))
             {
                 this.allAchieved.remove(elem);
             }
@@ -132,8 +112,57 @@ public class Player {
                 return elem;
             }
         }
+        return null;
     }
 
+    protected void calculateAllScores()
+    {
+        this.stringScore = Statistics.calculateStringScore(this);
+        this.numericScore = Statistics.calculateNumericScore(this);
+        this.consistencyScore = Statistics.calculateHabitScore(this);
+        computeTotalScore();
+    }
+
+    protected void computeTotalScore()
+    {
+        this.TotalScore = this.stringScore+this.consistencyScore+this.numericScore;
+    }
+
+    public double returnTotalScore()
+    {
+        return this.TotalScore;
+    }
+
+    public double returnHabitScore()
+    {
+        return this.consistencyScore;
+    }
+
+    public int compareTo(Player p)
+    {
+        if(this.TotalScore > p.TotalScore)
+        {
+            return 1;
+        }
+        else if (this.TotalScore == p.TotalScore)
+        {
+            return 0;
+        }
+        else 
+        {
+            return -1;
+        }
+    }
+
+    public void initializeAchievement()
+    {
+
+
+        for(int i = 0; i < 27;i++)
+        {
+            this.allAchieved.add(new Achievement(nickyName, name, id, false));
+        }
+    }
 
 }
 

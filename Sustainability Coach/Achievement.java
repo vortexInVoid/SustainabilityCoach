@@ -6,8 +6,12 @@ public class Achievement{
    private String name;
    private String playerNote;
    private String type;
+
    private double InterractionNumber;
+
    private boolean isCompleted;
+   private double achivementNumericConstant;
+   
    private ArrayList<Stamp> allInputs = new ArrayList<Stamp>();
 
    public Achievement(String name, String playerNote, String type, boolean isCompleted){
@@ -72,5 +76,15 @@ public class Achievement{
     public ArrayList<Stamp> returnAllStamps()
     {
       return this.allInputs;
+    }
+
+    public void setAchievementNumericCons(double cons)
+    {
+      this.achivementNumericConstant = cons;
+    }
+
+    public double getNumericCons()
+    {
+      return this.achivementNumericConstant;
     }
 }
