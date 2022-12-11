@@ -253,12 +253,16 @@ public class NewJPanel extends javax.swing.JPanel {
             }
         });
 
+        jTextField2.setEditable(false);
         jTextField2.setText("jTextField1");
 
+        jTextField3.setEditable(false);
         jTextField3.setText("jTextField1");
 
+        jTextField4.setEditable(false);
         jTextField4.setText("jTextField1");
 
+        jTextField5.setEditable(false);
         jTextField5.setText("jTextField1");
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
