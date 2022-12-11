@@ -15,7 +15,7 @@ public class TreePanel extends JPanel
         buttonFive, buttonSix, buttonSeven, buttonEight;
     private TreeComponent theTree;
     
-    public TreePanel( )
+    public TreePanel(coachControl theControl)
     {
         createTree( );
         createButton( );
