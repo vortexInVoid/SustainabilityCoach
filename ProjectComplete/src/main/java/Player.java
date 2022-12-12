@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 /**
  * Player
@@ -8,6 +9,7 @@ public class Player {
     private String name_surname;
     private String userName;
     private String password;
+    
 
     // 0-man 1-female 2-other
     private int gender;
@@ -17,6 +19,8 @@ public class Player {
     private String status;
 
     private ArrayList<Achievement> allAchieved;
+    private ArrayList<Badge> badges;
+    private final int NUMBER_OF_BADGES = 10;
 
     private double stringScore;
     private double numericScore;
@@ -27,6 +31,7 @@ public class Player {
 
     public Player(String nameSurname, String userName, String password, int gender)
     {
+        badges = new ArrayList<>( );
         //Name-Surname
         setName_Surname(nameSurname);
         setUsername(userName);
@@ -39,6 +44,20 @@ public class Player {
         computeTotalScore();
     }
 
+    public void populateBages(ArrayList<JLabel> labels)
+    {
+        for(int i = 1; i <= NUMBER_OF_BADGES; i++)
+        {
+            badges.add(new Badge(""+i, false, labels.get(i-1)));
+        }
+    }
+       
+    public void changeBadge(int index, boolean isComplete)
+    {
+        badges.get(index).setIsComplete(isComplete);
+        badges.get(index).refreshVisiblity( );
+    }
+    
     //Controller
     public void setName_Surname(String nameSurname)
     {

@@ -8,64 +8,41 @@ import javax.swing.*;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 /**
  *
  * @author HP
  */
 public class Profile extends javax.swing.JPanel {
-
+    
+    coachControl theControl;
     /**
      * Creates new form NewJPanel
      */
+    ArrayList<JLabel> imageLabels;
     public Profile(coachControl theControl) {
         initComponents();
         addProfileImage();
-        addBadges();
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
-
+        this.theControl = theControl;
+        imageLabels = new ArrayList<JLabel>( );
+        addBadges();
     }
-
+    
     public void addBadges( )
     {
-        try
-        {
-            BufferedImage badgeOne = ImageIO.read(new File("Badges/1.jpg"));
-            BadgeOne.setIcon(new ImageIcon(scale(badgeOne, 200, 200)));
-            BadgeOne.setVisible(false);
-
-            BufferedImage badgeTwo = ImageIO.read(new File("Badges/2.jpg"));
-            BadgeTwo.setIcon(new ImageIcon(scale(badgeTwo, 200, 200)));   
-            
-            BufferedImage badgeThree = ImageIO.read(new File("Badges/3.jpg"));
-            BadgeThree.setIcon(new ImageIcon(scale(badgeThree, 200, 200)));
-
-            BufferedImage badgeFour = ImageIO.read(new File("Badges/4.jpg"));
-            BadgeFour.setIcon(new ImageIcon(scale(badgeFour, 200, 200)));
-
-            BufferedImage badgeFive = ImageIO.read(new File("Badges/5.jpg"));
-            BadgeFive.setIcon(new ImageIcon(scale(badgeFive, 200, 200))); 
-            
-            BufferedImage badgeSix = ImageIO.read(new File("Badges/5.jpg"));
-            BadgeSix.setIcon(new ImageIcon(scale(badgeSix, 200, 200)));            
-            
-            BufferedImage badgeSeven = ImageIO.read(new File("Badges/7.jpg"));
-            BadgeSeven.setIcon(new ImageIcon(scale(badgeSeven, 200, 200)));
-
-            BufferedImage badgeEight = ImageIO.read(new File("Badges/8.jpg"));
-            BadgeEight.setIcon(new ImageIcon(scale(badgeEight, 200, 200)));   
-            
-            BufferedImage badgeNine = ImageIO.read(new File("Badges/9.jpg"));
-            BadgeNine.setIcon(new ImageIcon(scale(badgeNine, 200, 200)));
-
-            BufferedImage badgeTen = ImageIO.read(new File("Badges/10.jpg"));
-            BadgeTen.setIcon(new ImageIcon(scale(badgeTen, 200, 200)));
-                     
-        }
-        catch(IOException e) 
-        {
-            e.printStackTrace(); // todo: implement proper error handeling
-        }
+        imageLabels.add(BadgeOne);
+        imageLabels.add(BadgeTwo);
+        imageLabels.add(BadgeThree);
+        imageLabels.add(BadgeFour);
+        imageLabels.add(BadgeFive);
+        imageLabels.add(BadgeSix);
+        imageLabels.add(BadgeSeven);
+        imageLabels.add(BadgeEight);        
+        imageLabels.add(BadgeNine);
+        imageLabels.add(BadgeTen);
+        theControl.addBadgeLabels(imageLabels);
     }
     
     //Add it to control 
@@ -123,6 +100,7 @@ public class Profile extends javax.swing.JPanel {
         jTextField5 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
 
         label2.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         label2.setForeground(new java.awt.Color(255, 0, 51));
@@ -256,21 +234,34 @@ public class Profile extends javax.swing.JPanel {
         });
 
         jTextField2.setEditable(false);
-        jTextField2.setText("jTextField1");
+        jTextField2.setText("Score");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jTextField3.setEditable(false);
-        jTextField3.setText("jTextField1");
+        jTextField3.setText("Penalty");
 
         jTextField4.setEditable(false);
-        jTextField4.setText("jTextField1");
+        jTextField4.setText("Consistancy");
 
         jTextField5.setEditable(false);
-        jTextField5.setText("jTextField1");
+        jTextField5.setText("Status");
+        jTextField5.setToolTipText("");
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel18.setText("Sex:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton3.setText("Sign out");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -286,40 +277,41 @@ public class Profile extends javax.swing.JPanel {
                             .addComponent(jScrollPane1)
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(label2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(3, 3, 3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(6, 6, 6))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField2))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField5)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1241, Short.MAX_VALUE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -338,10 +330,12 @@ public class Profile extends javax.swing.JPanel {
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -367,34 +361,13 @@ public class Profile extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 105, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Choose Your File");
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int returnval = fileChooser.showOpenDialog(null);
-        if (returnval == JFileChooser.APPROVE_OPTION)
-        {
-            File file = fileChooser.getSelectedFile();
-            BufferedImage bi;
-             try 
-             {
-                 bi = ImageIO.read(file);
-                 bi = scale(bi, 186, 209);
-                 jLabel15.setIcon(new ImageIcon(bi));
-                 File outputfile = new File("image.jpg");
-                 ImageIO.write(bi, "jpg", outputfile);
-             }
-             catch(IOException e) 
-             {
-                e.printStackTrace(); // todo: implement proper error handeling
-             }
-        }
-        
+        theControl.addProfileImage(jLabel15);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -405,25 +378,15 @@ public class Profile extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    public static BufferedImage scale(BufferedImage src, int w, int h)
-    {
-        BufferedImage img = 
-                new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        int x, y;
-        int ww = src.getWidth();
-        int hh = src.getHeight();
-        int[] ys = new int[h];
-        for (y = 0; y < h; y++)
-            ys[y] = y * hh / h;
-        for (x = 0; x < w; x++) {
-            int newX = x * ww / w;
-            for (y = 0; y < h; y++) {
-                int col = src.getRGB(newX, ys[y]);
-                img.setRGB(x, y, col);
-            }
-        }
-        return img;
-    }
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        theControl.utilizeLogOut( );
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BadgeEight;
@@ -438,6 +401,7 @@ public class Profile extends javax.swing.JPanel {
     private javax.swing.JLabel BadgeTwo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;

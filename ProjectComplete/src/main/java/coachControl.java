@@ -1,4 +1,6 @@
+import java.awt.image.BufferedImage;
 import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
+import javax.imageio.ImageIO;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -21,8 +24,8 @@ import javax.swing.*;
 
 public class coachControl
 {
-
-    private Player playing;
+    private ArrayList<JLabel> badgeLabels;
+    private Player playing = new Player("Default", "Default", "0", 0);
     private boolean isValidLogIn;
 
     private ArrayList<Player> allPlayers;
@@ -34,8 +37,21 @@ public class coachControl
     
     public coachControl()
     {
+        badgeLabels = new ArrayList<JLabel>( );
         allPlayers = new ArrayList<Player>( );
         loadPlayerDataFrom();
+    }
+    
+    public void addBadgeLabels(ArrayList<JLabel> badgeLabels)
+    {
+        this.badgeLabels = badgeLabels;
+    }
+    
+    public void manageBadges( )
+    {
+        playing.changeBadge(0, true);
+        playing.changeBadge(1, true);
+        playing.changeBadge(5, true);
     }
     
     public void utilizeLogIn( )
@@ -50,6 +66,12 @@ public class coachControl
             signFrame.setVisible(true);
             frame.setVisible(false);        
         }
+    }
+    
+    public void utilizeLogOut( )
+    {
+        signFrame.setVisible(true);
+        frame.setVisible(false);       
     }
     
     public void frameStart( )
@@ -78,6 +100,51 @@ public class coachControl
       signFrame.setVisible(true);
       signFrame.getContentPane().add(tpTwo);
       signFrame.pack();
+    }
+    
+    public static BufferedImage scale(BufferedImage src, int w, int h)
+    {
+        BufferedImage img = 
+                new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        int x, y;
+        int ww = src.getWidth();
+        int hh = src.getHeight();
+        int[] ys = new int[h];
+        for (y = 0; y < h; y++)
+            ys[y] = y * hh / h;
+        for (x = 0; x < w; x++) {
+            int newX = x * ww / w;
+            for (y = 0; y < h; y++) {
+                int col = src.getRGB(newX, ys[y]);
+                img.setRGB(x, y, col);
+            }
+        }
+        return img;
+    }
+    
+    public void addProfileImage(JLabel profileLabel)
+    {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Choose Your File");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int returnval = fileChooser.showOpenDialog(null);
+        if (returnval == JFileChooser.APPROVE_OPTION)
+        {
+            File file = fileChooser.getSelectedFile();
+            BufferedImage bi;
+             try 
+             {
+                 bi = ImageIO.read(file);
+                 bi = scale(bi, 186, 209);
+                 profileLabel.setIcon(new ImageIcon(bi));
+                 File outputfile = new File("image.jpg");
+                 ImageIO.write(bi, "jpg", outputfile);
+             }
+             catch(IOException e) 
+             {
+                e.printStackTrace(); // todo: implement proper error handeling
+             }
+        }
     }
     
     public boolean getIsValidLogIn( )
@@ -156,8 +223,6 @@ public class coachControl
     
     public void validateLogin(JTextField name, JPasswordField password)
     {
-        
-        
         isValidLogIn = false;
         if( !(allPlayers.size( ) == 0) )
         {
@@ -167,6 +232,8 @@ public class coachControl
                 && password.getText().equals(aPlayer.getPassword()))
                 {
                     isValidLogIn = true;
+                    playing = aPlayer;
+                    manageBadges( );
                     break;
                 }
             }             
@@ -190,8 +257,10 @@ public class coachControl
     {
         if( (allPlayers.size() == 0) || (pas1.getText().equals(pas2.getText()) && !searchPlayer(userName.getText())))
         {
-            allPlayers.add( new Player(nameSurname.getText( ),userName.getText( ), 
-                    pas1.getText(), comBox.getSelectedIndex()) );
+            Player newPlayer =   new Player(nameSurname.getText( ),userName.getText( ), 
+                    pas1.getText(), comBox.getSelectedIndex());
+            allPlayers.add( newPlayer );
+            newPlayer.populateBages(badgeLabels);
         }
         else
         {
