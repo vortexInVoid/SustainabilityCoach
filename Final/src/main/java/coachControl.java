@@ -350,5 +350,11 @@ public class coachControl
             // show message
         }
     }
+    
+    /*
+    public void changePopUpInfo(JComboBox box,)
+    {
+        
+*/
 
 }

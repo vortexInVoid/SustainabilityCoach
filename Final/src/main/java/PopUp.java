@@ -13,15 +13,11 @@ public class PopUp extends javax.swing.JFrame {
      * Creates new form PopUp
      */
     private coachControl control;
-    private Achievement achiving;
     
-    public PopUp(coachControl control, Achievement achi) {
+    public PopUp(coachControl control) {
         initComponents();
         this.control = control;
-        this.achiving = achi;
-        
-        jLabel1.setText(achi.getName());
-        jTextArea1.setText(achi.getPlayerNote());
+
     }
 
     /**
@@ -131,7 +127,7 @@ public class PopUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    control.stampInput(achiving.getName(),Double.parseDouble(jTextField1.getText()),jTextArea2.getText());    // TODO add your handling code here:
+    //control.stampInput(achiving.getName(),Double.parseDouble(jTextField1.getText()),jTextArea2.getText());    // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
