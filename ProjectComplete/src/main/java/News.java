@@ -12,7 +12,7 @@ public class News extends javax.swing.JPanel {
     /**
      * Creates new form News
      */
-    public News(coachControl theControl) {
+    public News() {
         initComponents();
     }
 
