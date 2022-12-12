@@ -23,6 +23,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.*;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class coachControl
 {
@@ -35,15 +36,18 @@ public class coachControl
     private ArrayList<String> tips;
     private ArrayList<String> news;
     private JFrame signFrame, frame;
-    
+    private TreePanel theTreePanel;
+    private String[][] treeMessages = new String[8][3];
+     
     
     public coachControl()
     {
+        loadPlayerDataFrom( );
+        theTreePanel =  new TreePanel(this);
         badgeLabels = new ArrayList<JLabel>( );
         allPlayers = new ArrayList<Player>( );
-        loadPlayerDataFrom();
-        createTips();
-        
+        createTips( );
+        frameStart( );
     }
     
     public void addBadgeLabels(ArrayList<JLabel> badgeLabels)
@@ -84,8 +88,7 @@ public class coachControl
       frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
       JTabbedPane tp = new JTabbedPane();
-      
-      tp.addTab ("Achivements", new TreePanel(this));
+      tp.addTab ("Achivements",theTreePanel);
       tp.addTab ("Profile", new Profile(this));
       tp.addTab("News", new News(this));
       
@@ -104,7 +107,43 @@ public class coachControl
       signFrame.setVisible(true);
       signFrame.getContentPane().add(tpTwo);
       signFrame.pack();
+      
+      loadAchivementTitles( );
+      theTreePanel.changeMessageMatrix(treeMessages);
+      theTreePanel.showProgress( 0, 1, 'c' );
+      theTreePanel.showProgress( 0, 0, 'c' );
+      theTreePanel.showProgress( 0, 1, 'c' );
+      theTreePanel.showProgress( 1, 0, 'c' );
+      theTreePanel.showProgress( 3, 0, 'c' );
+      theTreePanel.showProgress( 3, 1, 'c' );
+      theTreePanel.showProgress( 3, 2, 'c' );
+      
+      
     }
+    
+    public void loadAchivementTitles( )
+    {
+        try {
+            File myObj = new File("project_achivements.txt");
+            Scanner myReader = new Scanner(myObj);
+            for(int i = 0; i < 8; i++) 
+            {
+                for(int j = 0; j < 3; j++)
+                {
+                    String data = myReader.nextLine();
+                    StringTokenizer st = new StringTokenizer(data, ";");             
+                    treeMessages[i][j] = st.nextToken();
+                }
+                
+            }
+            myReader.close();
+        }       
+        catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+         }  
+    }
+    
     
     public static BufferedImage scale(BufferedImage src, int w, int h)
     {

@@ -21,15 +21,15 @@ public class generateTree
         }
     }
     
-    public void generateSubBranch( int level, int numOfDisplayedLeaves )
+    public void generateSubBranch( int level, String[] message )
     {
         int levelX;
-        for( int i = 0; i < numOfDisplayedLeaves; i++ )
+        for( int i = 0; i < message.length; i++ )
         {
             levelX = level * 150;
 
             treeComponent.addCircle( new Circle( levelX + ( i + 1 ) * 25, 500 - 150 * (i + 1), 
-                                            100, "sublevel " + i, false, false, level, i + 1 ) );
+                                            100, message[i], false, false, level, i + 1 ) );
             treeComponent.addLine( new Line2D.Double( levelX + i * 25 + 50 + 8.2200, 550 - i * 150 - 49.3197, 
                                         levelX + i * 25 + 50 + 16.78, 550 - i * 150 - 100.6803  ) );
             treeComponent.changeProgressChart(level, i + 1, 'n');

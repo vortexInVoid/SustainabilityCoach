@@ -23,6 +23,11 @@ public class Circle extends Ellipse2D.Double
         return message;
     }
     
+    public void setMessage( String message )
+    {
+        this.message = message;
+    }
+    
     public boolean getIsMain( )
     {
         return isMain;

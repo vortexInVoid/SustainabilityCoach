@@ -40,7 +40,7 @@ public class TreeComponent extends JComponent
     {
         Graphics2D g2 = (Graphics2D) g;
         Circle theCircle;
-        Color myColor = new Color(30, 100, 30);
+        Color myColor = new Color(0, 255, 0);
         for( int i = 0; i < circles.size( ); i++ )
         {
             theCircle = circles.get( i );
@@ -77,5 +77,30 @@ public class TreeComponent extends JComponent
         progressChart[level][sublevel] = status;
         repaint( );
     }
+    
+    public void changeMessages( String[][] messages )
+    {
+        for( Circle aCircle : circles )
+        {
+            if( !aCircle.getIsMain( ) )
+                aCircle.setMessage(messages[aCircle.getLevel( )][aCircle.getSublevel()-1]);
+            //System.out.println(aCircle.getMessage());
+        }
+        repaint( );
+    }
+    /*
+    public Circle findCircle(int level, int sublevel)
+    {
+        for(Circle aCircle : circles)
+        {
+            if(!aCircle.getIsMain( ))
+            {
+                if( (aCircle.getLevel( ) == level) && (aCircle.getSublevel( ) == sublevel) )
+                    return aCircle; 
+            }
+        }
+        return null;
+    }
+    */
 }
 
