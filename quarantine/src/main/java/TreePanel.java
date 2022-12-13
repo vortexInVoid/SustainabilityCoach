@@ -10,7 +10,7 @@ public class TreePanel extends JPanel
     
     private static final int TREE_WIDTH = 200;
     private static final int TREE_HEIGHT = 200;
-    private int cat,level;
+    public int subLevel,level;
     
     String[][] messageMatrix = new String[8][3];
     
@@ -35,11 +35,14 @@ public class TreePanel extends JPanel
     
     class ActionButton implements ActionListener
     {
-        private int level;
+        private int lev;
         
         public ActionButton(int level)
         {
-            this.level = level;
+            this.lev = level;
+            System.out.println(level);
+            //System.out.print(control.theTreePanel.level);
+            
         }
         
         public void actionPerformed( ActionEvent event )
@@ -47,6 +50,7 @@ public class TreePanel extends JPanel
             JFrame pupUp = new PopUp(control,level);   
             pupUp.setVisible(true);
             pupUp.setPreferredSize(new Dimension(400, 300));
+            control.theTreePanel.level = lev;
         }
     }
     
@@ -104,7 +108,7 @@ public class TreePanel extends JPanel
         theTree.changeMessages(messageMatrix);
     }
     
-    private void createButton( )
+    private void createButton()
     {
         buttonOne = new JButton( "Coffee" );
         buttonOne.addActionListener( new ActionButton(0) );

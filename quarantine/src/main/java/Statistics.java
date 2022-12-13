@@ -1,5 +1,6 @@
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Statistics {
     
@@ -86,19 +87,26 @@ public class Statistics {
     {
         ArrayList<Long> diff = new ArrayList<Long>();
         long dummy;
+        double re;
         
         for(Achievement achi : p.getAllAchievements() )
         {
             for(int i = 0;i < achi.returnAllStamps().size()-1;i++ )
             {
-                dummy = ChronoUnit.MINUTES.between(achi.returnAllStamps().get(i+1).getDate(),achi.returnAllStamps().get(i).getDate());
+                if(achi.returnAllStamps().size()>1)
+                {
+                dummy = ChronoUnit.SECONDS.between(achi.returnAllStamps().get(i).getDate(),achi.returnAllStamps().get(i+1).getDate());
                 diff.add(dummy);
+                System.out.println("\nDUMMY " + dummy);
+                }
             }
         }
         
         double sum = 0.0, standardDeviation = 0.0;
         int length = diff.size();
 
+        if(length > 0)
+        {
         for(double num : diff) {
             sum += num;
         }
@@ -108,9 +116,12 @@ public class Statistics {
         for(double num: diff) {
             standardDeviation += Math.pow(num - mean, 2);
         }
-
-        return 100/(1+Math.sqrt(standardDeviation/length));
         
+        double expression = (double)(1+Math.sqrt(standardDeviation/length));
+        re = (100/expression);
+        return (double) Math.round(re);
+        }
+        return 100;  
     }
 
     

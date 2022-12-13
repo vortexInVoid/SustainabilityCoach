@@ -23,14 +23,14 @@ public class Profile extends javax.swing.JPanel {
     ArrayList<JLabel> imageLabels;
     public Profile(coachControl theControl) {
         initComponents();
-        addProfileImage();
+        
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
         this.theControl = theControl;
         imageLabels = new ArrayList<JLabel>( );
         addBadges();
         theControl.loadProfile(jTextField1, jComboBox1, jTextField2, jTextField3, jTextField4, jTextField5);
         
-        
+        addProfileImage();
     }
     
     public void addBadges( )
@@ -53,12 +53,15 @@ public class Profile extends javax.swing.JPanel {
     {
         try
         {
-            jLabel15.setIcon(new ImageIcon(ImageIO.read(new File("image.jpg"))));
+            
+            jLabel15.setIcon(new ImageIcon(ImageIO.read(new File(theControl.getPlayer( ).getUsername( ) + ".jpg"))));
+            
         }
         catch(IOException e) 
         {
             e.printStackTrace(); // todo: implement proper error handeling
-        }        
+        }   
+
     }
     
     public void updateInfo()
@@ -375,7 +378,7 @@ public class Profile extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        theControl.addProfileImage(jLabel15);
+        theControl.addProfileImage(jLabel15, theControl.getPlayer().getUsername());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

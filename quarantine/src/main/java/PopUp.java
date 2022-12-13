@@ -20,6 +20,8 @@ public class PopUp extends javax.swing.JFrame {
         this.control = control;
         this.level = level;
         this.x = 0;
+        control.theTreePanel.subLevel = x;
+        control.theTreePanel.level = x;
         
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(control.returnMessage()[level]));
         
@@ -138,11 +140,13 @@ public class PopUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    control.stampInput(control.returnMessage()[level][x],jTextField1,jTextArea2);    // TODO add your handling code here:
+    control.stampInput(control.returnMessage()[level][x],jTextField1,jTextArea2);
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         int x = jComboBox1.getSelectedIndex();
+        control.theTreePanel.subLevel = x;
         control.loadAchievement(control.returnMessage()[level][x], jTextArea1, jLabel1);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 

@@ -45,7 +45,7 @@ public class Player {
         setGender(gender);
 
         this.stringScore = 0;
-        this.consistencyScore = 0;
+        this.consistencyScore = 100;
         this.numericScore = 0;
         this.numericScore = 0;
         this.status = "Sappling";

@@ -26,6 +26,11 @@ public class Achievement{
       public void setName(String name){
        this.name = name;
     }
+      
+      public String getTask()
+      {
+          return this.task;
+      }
 
     public  void setPlayerNote(String playerNote){
       this.playerNote = playerNote;

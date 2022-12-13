@@ -28,7 +28,9 @@ public class coachControl
     private ArrayList<String> news;
 
     private JFrame signFrame, frame;
-    private TreePanel theTreePanel;
+    public TreePanel theTreePanel;
+    private Profile theProfile;
+    private News theNews;
 
     private String[][] treeMessages = new String[8][3];
     
@@ -36,11 +38,22 @@ public class coachControl
     {
         loadAchivementTitles();
         loadPlayerDataFrom( );
-        theTreePanel =  new TreePanel(this);
+
         badgeLabels = new ArrayList<JLabel>( );
         allPlayers = new ArrayList<Player>( );
         createTips( );
+        
+        theTreePanel =  new TreePanel(this);
+        theProfile = new Profile(this);
+        theNews = new News(this);
         frameStart( );
+        System.out.println(playing.getUsername( ));
+    }
+    
+    
+    public Player getPlayer( )
+    {
+        return playing;
     }
     
     public String[][] returnMessage()
@@ -60,7 +73,7 @@ public class coachControl
         playing.changeBadge(5, true);
     }
     
-    public void loadProfile(JTextField name,JComboBox gender,JTextField score,JTextField cons,JTextField pen,JTextField stat)
+    public void loadProfile(JTextField name,JComboBox gender,JTextField score,JTextField pen,JTextField cons,JTextField stat)
     {
         name.setText(playing.getName_Surname());
         gender.setSelectedIndex(playing.getGender());
@@ -76,6 +89,7 @@ public class coachControl
         {
             signFrame.setVisible(false);
             frame.setVisible(true);
+            theProfile.updateInfo();
         }
         else
         {
@@ -98,10 +112,11 @@ public class coachControl
 
       JTabbedPane tp = new JTabbedPane();
       tp.addTab ("Achivements",theTreePanel);
-      tp.addTab ("Profile", new Profile(this));
-      tp.addTab("News", new News(this));
+      tp.addTab ("Profile", theProfile);
+      tp.addTab("News", theNews);
       
-      frame.setVisible(false);
+      //Make FALSE!!!!!!!!!!!!!!!
+      frame.setVisible(true);
       frame.getContentPane().add(tp);
       frame.pack();
       
@@ -119,6 +134,7 @@ public class coachControl
       
       loadAchivementTitles( );
       theTreePanel.changeMessageMatrix(treeMessages);
+      /*
       theTreePanel.showProgress( 0, 1, 'c' );
       theTreePanel.showProgress( 0, 0, 'c' );
       theTreePanel.showProgress( 0, 1, 'c' );
@@ -126,7 +142,7 @@ public class coachControl
       theTreePanel.showProgress( 3, 0, 'c' );
       theTreePanel.showProgress( 3, 1, 'c' );
       theTreePanel.showProgress( 3, 2, 'c' );
-      
+      */
       frame.addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent e) {
             loadPlayerDataTo();
@@ -180,7 +196,7 @@ public class coachControl
         return img;
     }
     
-    public void addProfileImage(JLabel profileLabel)
+    public void addProfileImage(JLabel profileLabel, String imageName)
     {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose Your File");
@@ -195,7 +211,7 @@ public class coachControl
                  bi = ImageIO.read(file);
                  bi = scale(bi, 186, 209);
                  profileLabel.setIcon(new ImageIcon(bi));
-                 File outputfile = new File("image.jpg");
+                 File outputfile = new File(imageName + ".jpg");
                  ImageIO.write(bi, "jpg", outputfile);
              }
              catch(IOException e) 
@@ -248,7 +264,7 @@ public class coachControl
 
     public void loadFirstFiveChampions(JTextField r1,JTextField r2,JTextField r3,JTextField r4,JTextField r5)
     {
-        this.allPlayers.sort(null);
+        //this.allPlayers.sort(null);
 
         if(this.allPlayers.size() >9)
         {
@@ -262,7 +278,7 @@ public class coachControl
 
     public void loadLastFiveChampions(JTextField r6,JTextField r7,JTextField r8,JTextField r9,JTextField r10)
     {
-        this.allPlayers.sort(null);
+        //this.allPlayers.sort(null);
 
         if(this.allPlayers.size() >9)
         {
@@ -273,11 +289,33 @@ public class coachControl
         r10.setText(this.allPlayers.get(9).getUsername());
         }
     }
+    
+    public boolean isNumeric(String str) {
+    if (str == null) {
+        return false;
+    }
+    try {
+        Double.parseDouble(str);
+        return true;
+    } catch (NumberFormatException nfe) {
+        return false;
+    }
+}
 
     public void stampInput(String AchiName, JTextField numeric,JTextArea input)
     {
+        String res = input.getText();
+        String num = numeric.getText(); 
+        
+        if(isNumeric(num))
+        {
         Achievement stamping = playing.getAchievement(AchiName);
-        stamping.addInteraction(new Stamp(input.getText(), Double.parseDouble(numeric.getText())));
+        playing.getAchievement(AchiName).setIsCompleted(true);
+        theTreePanel.showProgress( theTreePanel.level, theTreePanel.subLevel+1, 'c' );
+        stamping.addInteraction(new Stamp(res,Double.parseDouble(num)));
+        playing.calculateAllScores();
+        this.theProfile.updateInfo();
+        }
     }
 
     public void calculateAllPlayerScores()
@@ -356,6 +394,10 @@ public class coachControl
         Achievement p  = playing.getAchievement(AchiName);
         name.setText(p.getName());
         des.setText(p.getPlayerNote());
+        des.append("\n");
+        des.append("********************************");
+        des.append("\n");
+        des.append(p.getTask());
     }
 
     protected void createTips( )

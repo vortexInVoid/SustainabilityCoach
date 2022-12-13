@@ -1,14 +1,14 @@
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Stamp {
     
-    private LocalDate interreactionDate;
+    private LocalDateTime interreactionDate;
     private String playerReponse;
     private double playerResponseDegree;
 
     public Stamp(String playerResponse, double playerResponseDegree)
     {
-        LocalDate date = LocalDate.now();
+        LocalDateTime date = LocalDateTime.now();
         this.interreactionDate = date;
         
         this.playerReponse = playerResponse;
@@ -25,7 +25,7 @@ public class Stamp {
         return this.playerResponseDegree;
     }
     
-    public LocalDate getDate()
+    public LocalDateTime getDate()
     {
         return this.interreactionDate;
     }
