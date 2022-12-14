@@ -13,19 +13,20 @@ public class PopUp extends javax.swing.JFrame {
      * Creates new form PopUp
      */
     private coachControl control;
-    private int level,x;
     
-    public PopUp(coachControl control,int level) {
+    public PopUp(coachControl control) {
         initComponents();
+        setControl(control);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(control.returnMessage()[control.level]));
+        
+        control.loadAchievement(control.returnMessage()[control.level][0], jTextArea1, jLabel1);
+        
+    }
+
+    public void setControl(coachControl control)
+    {
         this.control = control;
-        this.level = level;
-        this.x = 0;
-        control.theTreePanel.subLevel = x;
-        control.theTreePanel.level = x;
-        
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(control.returnMessage()[level]));
-        
-        control.loadAchievement(control.returnMessage()[level][0], jTextArea1, jLabel1);
     }
 
     /**
@@ -47,6 +48,7 @@ public class PopUp extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,14 +103,17 @@ public class PopUp extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,7 +133,9 @@ public class PopUp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -140,14 +147,14 @@ public class PopUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    control.stampInput(control.returnMessage()[level][x],jTextField1,jTextArea2);
+    control.stampInput(control.returnMessage()[control.level][control.subLevel],jTextField1,jTextArea2,jLabel4);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        int x = jComboBox1.getSelectedIndex();
-        control.theTreePanel.subLevel = x;
-        control.loadAchievement(control.returnMessage()[level][x], jTextArea1, jLabel1);
+        control.subLevel = jComboBox1.getSelectedIndex();
+        control.loadAchievement(control.returnMessage()[control.level][control.subLevel], jTextArea1, jLabel1);
+        jLabel4.setText("");
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
@@ -160,6 +167,7 @@ public class PopUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;

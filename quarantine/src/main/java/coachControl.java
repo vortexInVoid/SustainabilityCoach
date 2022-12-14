@@ -19,8 +19,9 @@ import java.util.StringTokenizer;
 public class coachControl
 {
     private ArrayList<JLabel> badgeLabels;
-    private Player playing = new Player("Default", "Default", "0", 2);
+    private Player playing = new Player("a", "a", "a", 2);
     private boolean isValidLogIn;
+    public int subLevel,level;
 
     private ArrayList<Player> allPlayers;
 
@@ -116,7 +117,7 @@ public class coachControl
       tp.addTab("News", theNews);
       
       //Make FALSE!!!!!!!!!!!!!!!
-      frame.setVisible(true);
+      frame.setVisible(false);
       frame.getContentPane().add(tp);
       frame.pack();
       
@@ -302,7 +303,7 @@ public class coachControl
     }
 }
 
-    public void stampInput(String AchiName, JTextField numeric,JTextArea input)
+    public void stampInput(String AchiName, JTextField numeric,JTextArea input,JLabel message)
     {
         String res = input.getText();
         String num = numeric.getText(); 
@@ -311,10 +312,11 @@ public class coachControl
         {
         Achievement stamping = playing.getAchievement(AchiName);
         playing.getAchievement(AchiName).setIsCompleted(true);
-        theTreePanel.showProgress( theTreePanel.level, theTreePanel.subLevel+1, 'c' );
+        theTreePanel.showProgress( this.level, this.subLevel+1, 'c' );
         stamping.addInteraction(new Stamp(res,Double.parseDouble(num)));
         playing.calculateAllScores();
         this.theProfile.updateInfo();
+        message.setText("Time stamped your habit!");
         }
     }
 
@@ -338,7 +340,7 @@ public class coachControl
                 {
                     isValidLogIn = true;
                     this.playing = aPlayer;
-                    manageBadges( );
+                    manageBadges();
                     break;
                 }
             }             

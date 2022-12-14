@@ -21,4 +21,4 @@ Softener;Using softener;How many times did you use softener in the last 7 days;C
 Diaper;Using washable diaper;How many times did you use washable diaper in the last 7 days;Cleaning;50
 Bag;Using plastic bag;How many times did you use a plastic bag for shopping;Plastic;-50
 Tableware;Avoiding plastic cups, spoons and forks;How many times did you avoid using plastic tableware when you ordered food in the last 30 days;Plastic;50
-Bottle; Take your water bottle;How many times did you bring your water bottle instead of buying a plastic bottle in the last 7 days?;Power;100
+Bottle; Take your water bottle;How many times did you bring your water bottle instead of buying a plastic bottle in the last 7 days?;Plastic;100

@@ -23,10 +23,12 @@ public class TreePanel extends JPanel
     
     public TreePanel(coachControl theControl)
     {
-        createTree( );
-        createButton( );
-        createPanel( );
         this.control = theControl;
+        
+        createTree( );
+        createButton();
+        createPanel( );
+
         for( int i = 0; i < NUMBER_OF_LEVELS; i++ )
         {
             theTree.changeProgressChart(i, 0, 'c' );
@@ -35,22 +37,21 @@ public class TreePanel extends JPanel
     
     class ActionButton implements ActionListener
     {
-        private int lev;
-        
-        public ActionButton(int level)
+        int k;
+        coachControl control;
+        public ActionButton(int level,coachControl control)
         {
-            this.lev = level;
-            System.out.println(level);
-            //System.out.print(control.theTreePanel.level);
-            
+            k = level;
+            this.control = control;
         }
         
         public void actionPerformed( ActionEvent event )
         {
-            JFrame pupUp = new PopUp(control,level);   
+            control.level = k;
+            control.subLevel = 0;
+            JFrame pupUp = new PopUp(control);   
             pupUp.setVisible(true);
             pupUp.setPreferredSize(new Dimension(400, 300));
-            control.theTreePanel.level = lev;
         }
     }
     
@@ -111,21 +112,21 @@ public class TreePanel extends JPanel
     private void createButton()
     {
         buttonOne = new JButton( "Coffee" );
-        buttonOne.addActionListener( new ActionButton(0) );
+        buttonOne.addActionListener( new ActionButton(0,control) );
         buttonTwo = new JButton( "Clothes" );
-        buttonTwo.addActionListener( new ActionButton(1) );
+        buttonTwo.addActionListener( new ActionButton(1,control) );
         buttonThree = new JButton( "Transportation" );
-        buttonThree.addActionListener( new ActionButton(2) );
+        buttonThree.addActionListener( new ActionButton(2,control) );
         buttonFour = new JButton( "Home" );
-        buttonFour.addActionListener( new ActionButton(3 ) );
+        buttonFour.addActionListener( new ActionButton(3,control) );
         buttonFive = new JButton( "Food" );
-        buttonFive.addActionListener( new ActionButton( 4) );
+        buttonFive.addActionListener( new ActionButton( 4,control) );
         buttonSix = new JButton( "Power" );
-        buttonSix.addActionListener( new ActionButton( 5) );
+        buttonSix.addActionListener( new ActionButton( 5,control) );
         buttonSeven = new JButton( "Cleaning" );
-        buttonSeven.addActionListener( new ActionButton(6 ) );
+        buttonSeven.addActionListener( new ActionButton(6,control) );
         buttonEight = new JButton( "Plastic" );
-        buttonEight.addActionListener( new ActionButton(7 ) );
+        buttonEight.addActionListener( new ActionButton(7,control) );
     }
     
     private void createPanel( )

@@ -118,7 +118,7 @@ public class Statistics {
         }
         
         double expression = (double)(1+Math.sqrt(standardDeviation/length));
-        re = (100/expression);
+        re = (100/Math.sqrt(expression));
         return (double) Math.round(re);
         }
         return 100;  
