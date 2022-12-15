@@ -67,7 +67,6 @@ public class coachControl
         //playing.populateBages( );
         //
         loadPlayerDataFrom( );
-        System.out.println();
     }
     
     public JFrame getInfoPage( )
@@ -118,6 +117,7 @@ Noble flamingo;Earn 1.000 points every day for a week
         for(int i = 0; i < 10; i++)
         {
             badgeLabels.get(i).setVisible(playing.getBadgeInfo()[i]);
+            System.out.println(playing.getBadgeInfo()[i]);
         }
     }
    
@@ -379,9 +379,9 @@ Noble flamingo;Earn 1.000 points every day for a week
         n1 = tips.get(rand.nextInt(this.tips.size()));
         n2 = tips.get(rand.nextInt(this.tips.size()));
         
-        if(!(n0.equals(n1)&&n0.equals(n2)&&n1.equals(n2)))
+        
+        if(!((n0.equals(n1)||n0.equals(n2)||n1.equals(n2))))
         {
-
             coachTip.append(n0);
             coachTip.append("\n");
             coachTip.append(n1);
@@ -494,7 +494,7 @@ Noble flamingo;Earn 1.000 points every day for a week
                     this.playing = aPlayer;
                     //this.playing.populateBages( );
                     refreshProfilePicture( );
-                    manageBadges();
+                    //manageBadges();
                     reloadAchi();
                     refreshBadges();
                     break;
@@ -596,7 +596,7 @@ Noble flamingo;Earn 1.000 points every day for a week
             for(Player aPlayer : emp)
             {
                 aPlayer.setProfilePic();
-                aPlayer.populateBages( );
+                //aPlayer.populateBages( );
             }
         } catch (Exception e) {
             e.printStackTrace();
