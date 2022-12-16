@@ -470,11 +470,12 @@ Noble flamingo;Earn 1.000 points every day for a week
     {
         Collections.sort(this.allPlayers, Collections.reverseOrder());
 
-        for(int i = 0 ; i < this.allPlayers.size();i++)
+        for(int i = 0 ; i < this.allPlayers.size() && i < 10; i++)
         {
-            this.theNews.returnFields().get(i).setText(String.format("%-30s Score:%-2s",this.allPlayers.get(i).getUsername(), this.allPlayers.get(i).returnTotalScore()));
+            this.theNews.returnFields().get(i).setText(String.format("%-20s Score:%-20s",this.allPlayers.get(i).getUsername(), this.allPlayers.get(i).returnTotalScore()));
         }
-          loadNews();
+        System.out.println("Number of players:" + this.allPlayers.size());
+        loadNews();
         
     }
     
