@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=generateTree
+comment1.params=treeComponent
+comment1.target=generateTree(TreeComponent)
+comment2.params=numOfDisplayedLeaves\ statingLevel\ messages
+comment2.target=void\ generateMainBranch(int,\ int,\ java.util.ArrayList)
+comment3.params=level\ message
+comment3.target=void\ generateSubBranch(int,\ java.lang.String[])
+numComments=4

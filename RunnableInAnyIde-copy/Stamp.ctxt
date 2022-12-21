@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Stamp
+comment1.params=playerResponse\ playerResponseDegree
+comment1.target=Stamp(java.lang.String,\ double)
+comment2.params=
+comment2.target=java.lang.String\ getString()
+comment3.params=
+comment3.target=double\ getNumeric()
+comment4.params=
+comment4.target=java.time.LocalDateTime\ getDate()
+numComments=5

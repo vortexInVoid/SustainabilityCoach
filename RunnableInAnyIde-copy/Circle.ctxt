@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Circle
+comment1.params=X\ Y\ diameter\ message\ isMain\ isComplete\ level\ sublevel
+comment1.target=Circle(double,\ double,\ double,\ java.lang.String,\ boolean,\ boolean,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getMessage()
+comment3.params=message
+comment3.target=void\ setMessage(java.lang.String)
+comment4.params=
+comment4.target=boolean\ getIsMain()
+comment5.params=
+comment5.target=boolean\ getIsComplete()
+comment6.params=isComplete
+comment6.target=void\ setIsComplete(boolean)
+comment7.params=
+comment7.target=int\ getLevel()
+comment8.params=
+comment8.target=int\ getSublevel()
+numComments=9

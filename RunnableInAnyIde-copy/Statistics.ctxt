@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Statistics
+comment1.params=a0\ a1\ a2\ a3
+comment1.target=Statistics(double,\ double,\ double,\ double)
+comment2.params=piCos
+comment2.target=void\ setPi(double)
+comment3.params=freedom
+comment3.target=void\ setDegreeOfFreedom(double)
+comment4.params=var
+comment4.target=void\ setVariance(double)
+comment5.params=fuzy
+comment5.target=void\ setFuzinessCons(double)
+comment6.params=p
+comment6.target=double\ calculateStringScore(Player)
+comment7.params=p
+comment7.target=double\ calculateNumericScore(Player)
+comment8.params=p
+comment8.target=double\ calculatePenalty(Player)
+comment9.params=p
+comment9.target=double\ calculateHabitScore(Player)
+numComments=10

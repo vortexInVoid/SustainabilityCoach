@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=TreePanel
+comment1.params=
+comment1.target=void\ createTree()
+comment2.params=level\ sublevel\ status
+comment2.target=void\ showProgress(int,\ int,\ char)
+comment3.params=messageMatrix
+comment3.target=void\ changeMessageMatrix(java.lang.String[][])
+comment4.params=
+comment4.target=void\ createButton()
+comment5.params=
+comment5.target=void\ createPanel()
+numComments=6
