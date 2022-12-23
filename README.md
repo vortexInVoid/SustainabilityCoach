@@ -1,9 +1,4 @@
 # SustainabilityCoach
 This is the CS102 project of the Saviours of the Green World
 
-We also expect you to use Github Wiki pages so that you can manage your project and keep
-track of progress. Please read this first, then head on over to the wiki and update your
-group's "First Page" (adding the title, group name, names of groups members, etc).
-Remember to keep logs of your Group meetings there too, and, most importantly, create and
-maintain your Personal Log page. Don't forget, keeping a record of what you personally do
-each week is a minimum course requirement
+Sustainability coach is a program aiming to the users keep track of their sustainable habits by enabling them to record achievements given by the program. Our program has a website-like interface which requires signing up and signing in for further actions. After the login, the player will record the things they have done on the achievements page. On the news page, we can see the highest-ranking players. In the profile section, the player can update and maintain their information. We have shrunk some features of our planned program as we have lost some team members along the way.
